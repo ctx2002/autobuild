@@ -1,0 +1,60 @@
+[submodule "puppet/modules/apt"]
+	path = puppet/modules/apt
+	url = https://github.com/puppetlabs/puppetlabs-apt
+[submodule "puppet/modules/php"]
+	path = puppet/modules/php
+	url = https://github.com/voxpupuli/puppet-php
+[submodule "puppet/modules/ntp"]
+	path = puppet/modules/ntp
+	url = https://github.com/puppetlabs/puppetlabs-ntp
+[submodule "puppet/modules/stdlib"]
+	path = puppet/modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib
+[submodule "puppet/modules/inifile"]
+	path = puppet/modules/inifile
+	url = https://github.com/puppetlabs/puppetlabs-inifile
+[submodule "puppet/modules/zypprepo"]
+	path = puppet/modules/zypprepo
+	url = https://github.com/voxpupuli/puppet-zypprepo
+[submodule "puppet/modules/archive"]
+	path = puppet/modules/archive
+	url = https://github.com/voxpupuli/puppet-archive
+[submodule "puppet/modules/mysql"]
+	path = puppet/modules/mysql
+	url = https://github.com/puppetlabs/puppetlabs-mysql
+[submodule "puppet/modules/nginx"]
+	path = puppet/modules/nginx
+	url = https://github.com/voxpupuli/puppet-nginx
+[submodule "vcsrepo"]
+	path = puppet/modules/vcsrepo
+	url = https://github.com/puppetlabs/puppetlabs-vcsrepo
+[submodule "puppet/modules/nodejs"]
+	path = puppet/modules/nodejs
+	url = https://github.com/voxpupuli/puppet-nodejs
+[submodule "puppet/modules/mongodb"]
+	path = puppet/modules/mongodb
+	url = https://github.com/voxpupuli/puppet-mongodb
+[submodule "puppet/modules/concat"]
+	path = puppet/modules/concat
+	url = https://github.com/puppetlabs/puppetlabs-concat
+[submodule "puppet/modules/staging"]
+	path = puppet/modules/staging
+	url = https://github.com/voxpupuli/puppet-staging
+[submodule "puppet/modules/translate"]
+	path = puppet/modules/translate
+	url = https://github.com/puppetlabs/puppetlabs-translate
+[submodule "puppet/modules/elasticsearch"]
+	path = puppet/modules/elasticsearch
+	url = https://github.com/elastic/puppet-elasticsearch
+[submodule "puppet/modules/elastic_stack"]
+	path = puppet/modules/elastic_stack
+	url = https://github.com/elastic/puppet-elastic-stack
+[submodule "puppet/modules/datacat"]
+	path = puppet/modules/datacat
+	url = https://github.com/richardc/puppet-datacat
+[submodule "puppet/modules/java"]
+	path = puppet/modules/java
+	url = https://github.com/puppetlabs/puppetlabs-java
+[submodule "puppet/modules/yum"]
+	path = puppet/modules/yum
+	url = https://github.com/voxpupuli/puppet-yum

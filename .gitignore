@@ -1,0 +1,9 @@
+.vagrant/
+.idea/
+output/
+packer_cache/
+puppet/modules/
+
+local.ranqx.io/
+local.ranqx.io.old/
+s34/
