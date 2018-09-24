@@ -27,18 +27,6 @@ package { 'supervisor':
   ensure => present
 }
 
-exec{ 'copy supervisor industry':
-  cwd         => '/vagrant/local.ranqx.io',
-  user        => 'root',
-  command     => 'cp /vagrant/puppet/environments/develop/data/industry.conf /etc/supervisor/conf.d/industry.conf'
-}->
-exec{ 'copy supervisor fin alert':
-  cwd         => '/vagrant/local.ranqx.io',
-  user        => 'root',
-  command     => 'cp /vagrant/puppet/environments/develop/data/fin_alert.conf /etc/supervisor/conf.d/fin_alert.conf',
-  notify => Service['supervisord']
-}
-
 service { 'supervisord':
     ensure => running,
 	enable => true
@@ -246,13 +234,7 @@ exec{ 'copy dev':
   cwd         => '/vagrant/local.ranqx.io',
   user        => 'vagrant',
   command     => 'cp /vagrant/local.ranqx.io/web_default/app_dev.php /vagrant/local.ranqx.io/web/app_dev.php'
-}->
-exec{ 'copy para':
-  cwd         => '/vagrant/local.ranqx.io',
-  user        => 'vagrant',
-  command     => 'cp /vagrant/puppet/environments/develop/data/parameters.yml /vagrant/local.ranqx.io/app/config/parameters.yml',
 }
-
 
 
 
