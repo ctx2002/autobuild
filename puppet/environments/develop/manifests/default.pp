@@ -135,6 +135,12 @@ class { '::php':
         'gmp'  => {}		
 	}
 }->
+vcsrepo { '/vagrant/local.ranqx.io':
+  ensure   => present,
+  provider => git,
+  source   => 'https://user:pass@bitbucket.org/ranqxteam/ranqx.git',
+  revision => 'develop'
+}->
 exec { 'run composer':
   environment => ["COMPOSER_HOME=/home/vagrant", "SYMFONY__path_to_node=/usr/bin/node", 
                   "SYMFONY__path_to_node_modules=/usr/lib/node_modules",
