@@ -27,7 +27,7 @@ go https://www.packer.io/downloads.html to downland packer, and install it.
 For new Developer VM
 
 1. shut down your existing vagrant Vm first
-2. clone this repo, and you will see folder developer-vm. now, cd into that folder.
+2. clone this repo, and you will see folder autobuild. now, cd into that folder.
 3. packer build ubuntu1804.json
 4. vagrant box add .\output\ubuntu-18.04.box --name="php7 ubuntu 18"
 5. open puppet\environments\develop\manifests\default.pp
