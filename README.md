@@ -35,7 +35,7 @@ For new Developer VM
 7. php .\download_submodule.php
 8. git submodule update --init --recursive
 9. vagrant up --provision
-10. download a our db backup from our backup server, and load it into DB.
+10. download a copy of DB, and load it into DB server.
 
 above command will build a fully functional vagrant box for development.
 
