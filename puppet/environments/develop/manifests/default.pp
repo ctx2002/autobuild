@@ -109,6 +109,9 @@ exec { 'install yarn':
 }->
 class { '::php':
 	manage_repos => true,
+	fpm_pools => {
+	    'www' => { listen => '/var/run/php/php7.2-fpm.sock' }    
+	},
 	settings   => {
 		'PHP/max_execution_time'  => '90',
 		'PHP/max_input_time'      => '300',
