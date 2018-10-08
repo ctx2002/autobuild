@@ -94,6 +94,12 @@ class { '::php::globals':
   php_version => '7.2',
   config_root => '/etc/php/7.2',
 }->
+vcsrepo { '/vagrant/local.test':
+  ensure   => present,
+  provider => git,
+  source   => 'https://usr:pass@bitbucket.org/xxxx/xxxx.git',
+  revision => 'develop'
+}->
 class { 'nodejs': 
     manage_package_repo       => false,
     nodejs_dev_package_ensure => 'present',
@@ -110,12 +116,19 @@ exec { 'install yarn':
 class { '::php':
 	manage_repos => true,
 	fpm_pools => {
-	    'www' => { listen => '/var/run/php/php7.2-fpm.sock' }    
+	    'www' => { 
+		    listen => '/var/run/php-fpm/php7.2-fpm.sock',
+            listen_owner                           => 'www-data',
+            listen_group                           => 'www-data',
+            listen_mode                            => '0600',
+            user => 'www-data',
+            group => 'www-data'			
+		}    
 	},
 	settings   => {
 		'PHP/max_execution_time'  => '90',
 		'PHP/max_input_time'      => '300',
-		'PHP/memory_limit'        => '256M',
+		'PHP/memory_limit'        => '512M',
 		'PHP/post_max_size'       => '32M',
 		'PHP/upload_max_filesize' => '32M',
 		'Date/date.timezone'      => 'Pacific/Auckland',
@@ -138,12 +151,6 @@ class { '::php':
         'gmp'  => {}		
 	}
 }->
-vcsrepo { '/vagrant/local.ranqx.io':
-  ensure   => present,
-  provider => git,
-  source   => 'https://user:pass@bitbucket.org/ranqxteam/ranqx.git',
-  revision => 'develop'
-}->
 exec { 'run composer':
   environment => ["COMPOSER_HOME=/home/vagrant", "SYMFONY__path_to_node=/usr/bin/node", 
                   "SYMFONY__path_to_node_modules=/usr/lib/node_modules",
@@ -156,7 +163,7 @@ exec { 'run composer':
 }
 ->
 exec { 'install encore':
-    cwd         => '/vagrant/local.ranqx.io',
+    cwd         => '/vagrant/local.test',
     user        => 'vagrant',
     command     => '/usr/bin/yarn add --dev @symfony/webpack-encore'
 }->
@@ -167,7 +174,7 @@ exec { 'yarn install':
 }
 ->
 exec { 'run yarn':
-      cwd         => '/vagrant/local.ranqx.io',
+      cwd         => '/vagrant/local.test',
       user        => 'vagrant',
       command     => '/usr/bin/yarn run encore dev'
 }
@@ -221,7 +228,7 @@ define web::nginx_php_vhost (
       server           => "${name}",
       ensure          => present,
       location        => '~ \.php(/|$)',
-      fastcgi         => "unix:/var/run/php5-fpm.sock",
+      fastcgi         => "unix:/var/run/php-fpm/php7.2-fpm.sock",
       fastcgi_script  => undef,
       index_files => [],
       location_custom_cfg => {
@@ -235,14 +242,8 @@ define web::nginx_php_vhost (
   }
 }
 
-web::nginx_php_vhost { "local.ranqx.io":
-  www_root => "/vagrant/local.ranqx.io/web",
-}
-
-exec{ 'copy dev':
-  cwd         => '/vagrant/local.ranqx.io',
-  user        => 'vagrant',
-  command     => 'cp /vagrant/local.ranqx.io/web_default/app_dev.php /vagrant/local.ranqx.io/web/app_dev.php'
+web::nginx_php_vhost { "local.test":
+  www_root => "/vagrant/local.test/web",
 }
 
 
